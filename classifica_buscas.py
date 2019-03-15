@@ -11,14 +11,6 @@ Ydummies_df = Y_df
 X = Xdummies_df.values
 Y = Ydummies_df.values
 
-# Acerto base recebe o valor maximo que foi encontrado na soma do array
-acerto_base = max(Counter(Y).values())
-# Calcula a porcentagem de acerto, pega a quantidade encontrada no array e divide pelo tamanho
-taxa_acerto_base = 100.0 * acerto_base / len(Y)
-# retorna o maior entre eles utilizando função max()
-print("Taxa de acerto base: %.2f" % taxa_acerto_base)
-
-
 porcentagem_treino = 0.9
 
 tamanho_treino = int(porcentagem_treino * len(Y))
@@ -41,6 +33,14 @@ acertos = resultado == teste_marcacoes
 total_acertos = sum(acertos)
 total_elementos = len(teste_dados)
 
-taxa_acerto = 100.0* total_acertos / total_elementos
+taxa_acerto = 100.0 * total_acertos / total_elementos
 print('Taxa de acerto do algoritmo %.2f' % taxa_acerto)
 print('Total de elementos', total_elementos)
+
+
+# Acerto base recebe o valor maximo que foi encontrado na soma do array
+acerto_base = max(Counter(teste_marcacoes).values())
+# Calcula a porcentagem de acerto, pega a quantidade encontrada no array e divide pelo tamanho
+taxa_acerto_base = 100.0 * acerto_base / len(teste_marcacoes)
+# retorna o maior entre eles utilizando função max()
+print("Taxa de acerto base: %.2f" % taxa_acerto_base)
