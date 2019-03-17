@@ -1,15 +1,9 @@
 import pandas as pd
 from collections import Counter
 
-df = pd.read_csv('busca.csv')
-# Teste 1: home, busca, logado
-# Teste 2: home, busca
-# Teste 3: home, logado
-# Teste 4: busca, logado
-# Teste 5: busca (85,7% 7 testes)
-
-X_df = df[['home', 'busca', 'logado']]
-Y_df = df['comprou']
+df = pd.read_csv('situacao_do_cliente.csv')
+X_df = df[['recencia', 'frequencia', 'semanas_de_inscricao']]
+Y_df = df['situacao']
 
 Xdummies_df = pd.get_dummies(X_df).astype(int)
 Ydummies_df = Y_df
