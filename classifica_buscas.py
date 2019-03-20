@@ -58,25 +58,29 @@ def teste_real(modelo, validacao_dados, validacao_marcacoes):
     msg = "Taxa de acerto do vencedor entre os dois algoritmos no mundo real: {0}".format(taxa_acerto)
     print(msg)
 
+resultados = {}
+
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.svm import LinearSVC
 modeloOneVsRest = OneVsRestClassifier(LinearSVC(random_state=0))
 resultadoOneVsRest = fit_and_predict("OneVsRest", modeloOneVsRest, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
-
+resultados[resultadoOneVsRest] = modeloOneVsRest
 
 
 from sklearn.naive_bayes import MultinomialNB
 modeloMultinomial = MultinomialNB()
 resultadoMultinomial = fit_and_predict("MultinomialNB", modeloMultinomial, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
+resultados[resultadoMultinomial] = modeloMultinomial
 
 from sklearn.ensemble import AdaBoostClassifier
 modeloAdaBoost = AdaBoostClassifier()
 resultadoAdaBoost = fit_and_predict("AdaBoostClassifier", modeloAdaBoost, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
+resultados[resultadoAdaBoost] = modeloAdaBoost
 
-if resultadoMultinomial > resultadoAdaBoost:
-    vencedor = modeloMultinomial
-else:
-    vencedor = modeloAdaBoost
+maximo = max(resultados)
+vencedor = resultados[maximo]
+print("Vencedor")
+print(vencedor)
 
 teste_real(vencedor, validacao_dados, validacao_marcacoes)
 
