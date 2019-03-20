@@ -42,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/classifica_buscas.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+            <state relative-caret-position="394">
+              <caret line="70" column="124" selection-start-line="70" selection-start-column="124" selection-end-line="70" selection-end-column="124" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -111,10 +111,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-10" />
-    <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1099" />
+    <option name="x" value="-1753" />
+    <option name="y" value="-22" />
+    <option name="width" value="1551" />
+    <option name="height" value="839" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,7 +260,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-1368" y="-8" width="1376" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.14573991" />
@@ -345,8 +345,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/classifica_buscas.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+        <state relative-caret-position="394">
+          <caret line="70" column="124" selection-start-line="70" selection-start-column="124" selection-end-line="70" selection-end-column="124" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
