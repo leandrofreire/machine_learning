@@ -66,6 +66,10 @@ modeloOneVsRest = OneVsRestClassifier(LinearSVC(random_state=0))
 resultadoOneVsRest = fit_and_predict("OneVsRest", modeloOneVsRest, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
 resultados[resultadoOneVsRest] = modeloOneVsRest
 
+from sklearn.multiclass import OneVsOneClassifier
+modeloOneVsOne = OneVsOneClassifier(LinearSVC(random_state=0))
+resultadoOneVsOne = fit_and_predict("OneVsOne", modeloOneVsOne, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
+resultados[resultadoOneVsOne] = modeloOneVsOne
 
 from sklearn.naive_bayes import MultinomialNB
 modeloMultinomial = MultinomialNB()
