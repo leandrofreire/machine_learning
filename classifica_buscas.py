@@ -1,15 +1,9 @@
 import pandas as pd
 from collections import Counter
 
-df = pd.read_csv('busca.csv')
-# Teste 1: home, busca, logado
-# Teste 2: home, busca
-# Teste 3: home, logado
-# Teste 4: busca, logado
-# Teste 5: busca (85,7% 7 testes)
-
-X_df = df[['home', 'busca', 'logado']]
-Y_df = df['comprou']
+df = pd.read_csv('situacao_do_cliente.csv')
+X_df = df[['recencia', 'frequencia', 'semanas_de_inscricao']]
+Y_df = df['situacao']
 
 Xdummies_df = pd.get_dummies(X_df).astype(int)
 Ydummies_df = Y_df
@@ -63,6 +57,13 @@ def teste_real(modelo, validacao_dados, validacao_marcacoes):
     taxa_acerto = 100.0 * total_acertos / total_elementos
     msg = "Taxa de acerto do vencedor entre os dois algoritmos no mundo real: {0}".format(taxa_acerto)
     print(msg)
+
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.svm import LinearSVC
+modeloOneVsRest = OneVsRestClassifier(LinearSVC(random_state=0))
+resultadoOneVsRest = fit_and_predict("OneVsRest", modeloOneVsRest, treino_dados, treino_marcacoes, teste_dados, teste_marcacoes)
+
+
 
 from sklearn.naive_bayes import MultinomialNB
 modeloMultinomial = MultinomialNB()
