@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from collections import Counter
 
 df = pd.read_csv('situacao_do_cliente.csv')
 X_df = df[['recencia', 'frequencia', 'semanas_de_inscricao']]
@@ -30,6 +31,17 @@ def fit_and_predict(nome, modelo, treino_dados, treino_marcacoes):
     print(msg)
     return taxa_de_acerto
 
+def teste_real(modelo, validacao_dados, validacao_marcacoes):
+    resultado = modelo.predict(validacao_dados)
+    acertos = resultado == validacao_marcacoes
+    total_de_acertos = sum(acertos)
+    total_de_elementos = len(validacao_marcacoes)
+
+    taxa_de_acerto = 100.0 * total_de_acertos / total_de_elementos
+
+    msg = "Taxa de acerto do vencedor entre os dois algoritmos no mundo real: {0}".format(taxa_de_acerto)
+    print(msg)
+
 resultados = {}
 
 from sklearn.multiclass import OneVsRestClassifier
@@ -55,3 +67,19 @@ resultadoAdaBoost = fit_and_predict("AdaBoostClassifier", modeloAdaBoost, treino
 resultados[resultadoAdaBoost] = modeloAdaBoost
 
 print(resultados)
+
+maximo = max(resultados)
+vencedor = resultados[maximo]
+
+print("Vencedor: ", vencedor)
+
+vencedor.fit(treino_dados, treino_marcacoes)
+
+teste_real(vencedor, validacao_dados, validacao_marcacoes)
+
+acerto_base = max(Counter(validacao_marcacoes).values())
+taxa_de_acerto_base = 100.0 * acerto_base / len(validacao_marcacoes)
+print('Total de acerto base: %f'% taxa_de_acerto_base)
+
+total_de_elementos = len(validacao_dados)
+print("Total de teste: %d " % total_de_elementos)
