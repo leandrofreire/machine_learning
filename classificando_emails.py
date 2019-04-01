@@ -6,9 +6,11 @@ textosPuros = classificacoes['email']
 textosQuebrados = textosPuros.str.lower().str.split(' ')
 dicionario = set()
 
+
 for lista in textosQuebrados:
     dicionario.update(lista)
-    
-print(dicionario)
+
 totalDePalavras = len(dicionario)
-print(totalDePalavras)
+tuplas = zip(dicionario, range(totalDePalavras))
+tradutor = {palavra:indice for palavra, indice in tuplas}
+print(tradutor['pode'])
