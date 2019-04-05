@@ -27,7 +27,7 @@ fim_de_teste = tamanho_treino + tamanho_teste
 teste_dados = X[tamanho_treino: fim_de_teste]
 teste_marcacoes = Y[tamanho_treino: fim_de_teste]
 
-# 900 até 999
+# 900 até 999  
 validacao_dados = X[fim_de_teste:]
 validacao_marcacoes = Y[fim_de_teste:]
 
