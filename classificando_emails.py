@@ -12,18 +12,16 @@ for lista in textosQuebrados:
 
 totalDePalavras = len(dicionario)
 tuplas = zip(dicionario, range(totalDePalavras))
-tradutor = {palavra:indice for palavra, indice in tuplas}
+tradutor = {palavra : indice for palavra, indice in tuplas}
 print(totalDePalavras)
 
-texto = textosQuebrados[0]
-vetor = [0] * totalDePalavras
+def vatorizar_texto(texto, tradutor):
+    vetor = [0] * len(tradutor)
+    for palavra in texto:
+        if palavra in tradutor:
+            posicao = tradutor[palavra]
+            vetor[posicao] += 1
+    return vetor
 
-print(texto)
-print(vetor)
-
-for palavra in texto:
-    if palavra in tradutor:
-        posicao = tradutor[palavra]
-        vetor[posicao] += 1
-
-print(vetor)
+vetoresDeTexto = [vatorizar_texto(texto, tradutor) for texto in textosQuebrados]
+print(vetoresDeTexto)
