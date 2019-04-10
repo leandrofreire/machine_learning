@@ -4,28 +4,37 @@ import pandas as pd
 from collections import Counter
 import numpy as np
 from sklearn.model_selection import cross_val_score
+import nltk
 
-
-classificacoes = pd.read_csv('emails.csv')
+classificacoes = pd.read_csv('emails.csv', encoding='utf-8')
 textosPuros = classificacoes['email']
-textosQuebrados = textosPuros.str.lower().str.split(' ')
+frases = textosPuros.str.lower()
+textosQuebrados = [nltk.word_tokenize(frase) for frase in frases]
+
+stopwords = nltk.corpus.stopwords.words('portuguese')
+stemmer = nltk.stem.RSLPStemmer()
 dicionario = set()
 
 
 for lista in textosQuebrados:
-    dicionario.update(lista)
+    validas = [stemmer.stem(palavra) for palavra in lista if palavra not in stopwords and len(palavra) > 2]
+    dicionario.update(validas)
+
+print(dicionario)
 
 totalDePalavras = len(dicionario)
 tuplas = zip(dicionario, range(totalDePalavras))
-tradutor = {palavra : indice for palavra, indice in tuplas}
+tradutor = {palavra: indice for palavra, indice in tuplas}
 print(totalDePalavras)
 
 def vatorizar_texto(texto, tradutor):
     vetor = [0] * len(tradutor)
     for palavra in texto:
-        if palavra in tradutor:
-            posicao = tradutor[palavra]
-            vetor[posicao] += 1
+        if len(palavra) > 0:
+            raiz = stemmer.stem(palavra)
+            if raiz in tradutor:
+                posicao = tradutor[raiz]
+                vetor[posicao] += 1
     return vetor
 
 vetoresDeTexto = [vatorizar_texto(texto, tradutor) for texto in textosQuebrados]
