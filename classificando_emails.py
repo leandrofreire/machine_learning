@@ -8,7 +8,8 @@ import nltk
 
 classificacoes = pd.read_csv('emails.csv', encoding='utf-8')
 textosPuros = classificacoes['email']
-textosQuebrados = textosPuros.str.lower().str.split(' ')
+frases = textosPuros.str.lower()
+textosQuebrados = [nltk.word_tokenize(frase) for frase in frases]
 
 stopwords = nltk.corpus.stopwords.words('portuguese')
 stemmer = nltk.stem.RSLPStemmer()
@@ -16,7 +17,7 @@ dicionario = set()
 
 
 for lista in textosQuebrados:
-    validas = [stemmer.stem(palavra) for palavra in lista if palavra not in stopwords and len(palavra) > 0]
+    validas = [stemmer.stem(palavra) for palavra in lista if palavra not in stopwords and len(palavra) > 2]
     dicionario.update(validas)
 
 print(dicionario)
