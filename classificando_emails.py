@@ -4,16 +4,21 @@ import pandas as pd
 from collections import Counter
 import numpy as np
 from sklearn.model_selection import cross_val_score
-
+import nltk
 
 classificacoes = pd.read_csv('emails.csv')
 textosPuros = classificacoes['email']
 textosQuebrados = textosPuros.str.lower().str.split(' ')
+
+stopwords = nltk.corpus.stopwords.words('portuguese')
 dicionario = set()
 
 
 for lista in textosQuebrados:
-    dicionario.update(lista)
+    validas = [palavra for palavra in lista if palavra not in stopwords]
+    dicionario.update(validas)
+
+print(dicionario)
 
 totalDePalavras = len(dicionario)
 tuplas = zip(dicionario, range(totalDePalavras))
